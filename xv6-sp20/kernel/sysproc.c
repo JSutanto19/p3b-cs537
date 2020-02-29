@@ -88,3 +88,15 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int sys_dump_allocated(void){
+  int frames;
+  int numframes;
+
+  if(argptr(0, (void*) &frames, sizeof(frames)) < 0 || argint(1,&numframes) < 0){
+    return -1;
+  }
+
+  return dump_allocated((int*) frames, numframes);
+
+}
