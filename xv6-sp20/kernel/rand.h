@@ -1,6 +1,6 @@
 #ifndef _RAND_H
 #define _RAND_H
-#define	XV6_RAND_MAX = 2147483647
+#define	XV6_RAND_MAX 2147483647
 
 /* 
     Return a random integer between 0 and XV6_RAND_MAX inclusive. 

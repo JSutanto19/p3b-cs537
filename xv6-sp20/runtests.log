@@ -230,15 +230,15 @@ ld  -m    elf_i386 -nostdlib --omagic \
 dd if=/dev/zero of=xv6.img count=10000
 10000+0 records in
 10000+0 records out
-5120000 bytes (5.1 MB, 4.9 MiB) copied, 0.0200112 s, 256 MB/s
+5120000 bytes (5.1 MB, 4.9 MiB) copied, 0.0206233 s, 248 MB/s
 dd if=kernel/bootblock of=xv6.img conv=notrunc
 1+0 records in
 1+0 records out
-512 bytes copied, 6.4168e-05 s, 8.0 MB/s
+512 bytes copied, 6.4668e-05 s, 7.9 MB/s
 dd if=kernel/kernel of=xv6.img seek=1 conv=notrunc
 256+1 records in
 256+1 records out
-131224 bytes (131 kB, 128 KiB) copied, 0.000652816 s, 201 MB/s
+131224 bytes (131 kB, 128 KiB) copied, 0.000497742 s, 264 MB/s
 gcc -c  -iquote include -Wall -Werror -ggdb  -o tools/mkfs.o tools/mkfs.c
 gcc  tools/mkfs.o -o tools/mkfs
 mkdir -p fs
@@ -298,23 +298,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/zombie fs/zombie
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-README
-sh
-grep
-usertests
-stressfs
-zombie
-ls
 cat
+usertests
+mkdir
+init
+sh
 ln
 wc
-echo
-rm
-tester
-mkdir
-kill
+grep
 forktest
-init
+rm
+zombie
+ls
+README
+echo
+tester
+kill
+stressfs
 balloc: first 407 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/ls user/bin/stressfs user/bin/grep user/bin/sh user/bin/tester user/bin/kill user/bin/cat user/bin/mkdir user/bin/init user/bin/rm user/bin/echo user/bin/ln user/bin/usertests user/bin/wc user/bin/zombie
@@ -332,63 +332,25 @@ compile and test the uniformity and randomness of the random number generator
 
 **********************************************************************
 gcc -Wl,-wrap,rand /u/c/s/cs537-1/tests/p3b/ctests/rand_tester.c kernel/rand.c -I./include -I./user -I.kernel/ -o rand_tester -Wall -Werror
-In file included from kernel/rand.c:2:0:
-kernel/defs.h:100:17: error: conflicting types for built-in function ‘exit’ [-Werror=builtin-declaration-mismatch]
- void            exit(void);
-                 ^~~~
-kernel/defs.h:127:17: error: conflicting types for built-in function ‘memcmp’ [-Werror=builtin-declaration-mismatch]
- int             memcmp(const void*, const void*, uint);
-                 ^~~~~~
-kernel/defs.h:128:17: error: conflicting types for built-in function ‘memmove’ [-Werror=builtin-declaration-mismatch]
- void*           memmove(void*, const void*, uint);
-                 ^~~~~~~
-kernel/defs.h:129:17: error: conflicting types for built-in function ‘memset’ [-Werror=builtin-declaration-mismatch]
- void*           memset(void*, int, uint);
-                 ^~~~~~
-kernel/defs.h:131:17: error: conflicting types for built-in function ‘strlen’ [-Werror=builtin-declaration-mismatch]
- int             strlen(const char*);
-                 ^~~~~~
-kernel/defs.h:132:17: error: conflicting types for built-in function ‘strncmp’ [-Werror=builtin-declaration-mismatch]
- int             strncmp(const char*, const char*, uint);
-                 ^~~~~~~
-kernel/defs.h:133:17: error: conflicting types for built-in function ‘strncpy’ [-Werror=builtin-declaration-mismatch]
- char*           strncpy(char*, const char*, int);
-                 ^~~~~~~
-In file included from kernel/rand.c:5:0:
-./include/x86.h: In function ‘lgdt’:
-./include/x86.h:61:11: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-   pd[1] = (uint)p;
-           ^
-./include/x86.h:62:11: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-   pd[2] = (uint)p >> 16;
-           ^
-./include/x86.h: In function ‘lidt’:
-./include/x86.h:75:11: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-   pd[1] = (uint)p;
-           ^
-./include/x86.h:76:11: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-   pd[2] = (uint)p >> 16;
-           ^
-kernel/rand.c: At top level:
-kernel/rand.c:15:6: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘->’ token
- rand ->a = 1;
-      ^~
-kernel/rand.c: In function ‘xv6_rand’:
-kernel/rand.c:31:33: error: ‘xv6_RAND_MAX’ undeclared (first use in this function); did you mean ‘XV6_RAND_MAX’?
-   if(randNum >= 0 && randNum <= xv6_RAND_MAX){
-                                 ^~~~~~~~~~~~
-                                 XV6_RAND_MAX
-kernel/rand.c:31:33: note: each undeclared identifier is reported only once for each function it appears in
-kernel/rand.c:34:1: error: control reaches end of non-void function [-Werror=return-type]
- }
- ^
-cc1: all warnings being treated as errors
-Failure: statistical test returned incorrect status code. Expected 0 got 1
+/tmp/tmpx4LlaO/p/./rand_tester 4571 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 949 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 643 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 2017 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 2020 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 3766 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 5303 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 3471 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 39 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 5392 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 5937 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 4586 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 2912 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 1673 2147483647
+/tmp/tmpx4LlaO/p/./rand_tester 4896 2147483647
 
 
-test statistical test FAILED (0 of 5)
+test statistical test PASSED (5 of 5)
  (compile and test the uniformity and randomness of the random number generator)
- statistical test returned incorrect status code. Expected 0 got 1
 
 starting srand behavior test
 
@@ -399,63 +361,12 @@ test the behavior of srand according to the definition in the header file
 
 **********************************************************************
 gcc -Wl,-wrap,rand /u/c/s/cs537-1/tests/p3b/ctests/srand_tester.c kernel/rand.c -I./include -I./user -I./kernel -o srand_tester -Wall -Werror
-In file included from kernel/rand.c:2:0:
-kernel/defs.h:100:17: error: conflicting types for built-in function ‘exit’ [-Werror=builtin-declaration-mismatch]
- void            exit(void);
-                 ^~~~
-kernel/defs.h:127:17: error: conflicting types for built-in function ‘memcmp’ [-Werror=builtin-declaration-mismatch]
- int             memcmp(const void*, const void*, uint);
-                 ^~~~~~
-kernel/defs.h:128:17: error: conflicting types for built-in function ‘memmove’ [-Werror=builtin-declaration-mismatch]
- void*           memmove(void*, const void*, uint);
-                 ^~~~~~~
-kernel/defs.h:129:17: error: conflicting types for built-in function ‘memset’ [-Werror=builtin-declaration-mismatch]
- void*           memset(void*, int, uint);
-                 ^~~~~~
-kernel/defs.h:131:17: error: conflicting types for built-in function ‘strlen’ [-Werror=builtin-declaration-mismatch]
- int             strlen(const char*);
-                 ^~~~~~
-kernel/defs.h:132:17: error: conflicting types for built-in function ‘strncmp’ [-Werror=builtin-declaration-mismatch]
- int             strncmp(const char*, const char*, uint);
-                 ^~~~~~~
-kernel/defs.h:133:17: error: conflicting types for built-in function ‘strncpy’ [-Werror=builtin-declaration-mismatch]
- char*           strncpy(char*, const char*, int);
-                 ^~~~~~~
-In file included from kernel/rand.c:5:0:
-./include/x86.h: In function ‘lgdt’:
-./include/x86.h:61:11: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-   pd[1] = (uint)p;
-           ^
-./include/x86.h:62:11: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-   pd[2] = (uint)p >> 16;
-           ^
-./include/x86.h: In function ‘lidt’:
-./include/x86.h:75:11: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-   pd[1] = (uint)p;
-           ^
-./include/x86.h:76:11: error: cast from pointer to integer of different size [-Werror=pointer-to-int-cast]
-   pd[2] = (uint)p >> 16;
-           ^
-kernel/rand.c: At top level:
-kernel/rand.c:15:6: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘->’ token
- rand ->a = 1;
-      ^~
-kernel/rand.c: In function ‘xv6_rand’:
-kernel/rand.c:31:33: error: ‘xv6_RAND_MAX’ undeclared (first use in this function); did you mean ‘XV6_RAND_MAX’?
-   if(randNum >= 0 && randNum <= xv6_RAND_MAX){
-                                 ^~~~~~~~~~~~
-                                 XV6_RAND_MAX
-kernel/rand.c:31:33: note: each undeclared identifier is reported only once for each function it appears in
-kernel/rand.c:34:1: error: control reaches end of non-void function [-Werror=return-type]
- }
- ^
-cc1: all warnings being treated as errors
-Failure: srand behavior test returned incorrect status code. Expected 0 got 1
+./srand_tester
+TEST PASSED
 
 
-test srand behavior test FAILED (0 of 3)
+test srand behavior test PASSED (3 of 3)
  (test the behavior of srand according to the definition in the header file)
- srand behavior test returned incorrect status code. Expected 0 got 1
 
 starting allocator_b
 
@@ -475,23 +386,23 @@ ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
-README
-sh
-grep
-usertests
-stressfs
-zombie
-ls
 cat
+usertests
+mkdir
+init
+sh
 ln
 wc
-echo
-rm
-tester
-mkdir
-kill
+grep
 forktest
-init
+rm
+zombie
+ls
+README
+echo
+tester
+kill
+stressfs
 balloc: first 408 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -522,18 +433,16 @@ Summary:
 test build PASSED
  (build xv6 using make)
 
-test statistical test FAILED (0 of 5)
+test statistical test PASSED (5 of 5)
  (compile and test the uniformity and randomness of the random number generator)
- statistical test returned incorrect status code. Expected 0 got 1
 
-test srand behavior test FAILED (0 of 3)
+test srand behavior test PASSED (3 of 3)
  (test the behavior of srand according to the definition in the header file)
- srand behavior test returned incorrect status code. Expected 0 got 1
 
 test allocator_b FAILED (0 of 5)
  (test the random allocator in part 3)
  tester failed
 
-Passed 1 of 4 tests.
-Overall 1 of 4
-Points 0 of 13
+Passed 3 of 4 tests.
+Overall 3 of 4
+Points 8 of 13
