@@ -1,13 +1,6 @@
 #include "rand.h"
 
-struct xorshift32_state {
-   unsigned int a;
-};
-
 unsigned int globalSeed = 1;
-//unsigned int a = 123456789;
-//unsigned int b = 362436069;
-//unsigned int c = 521288629;
 
 /* The state word must be initialized to non-zero */
  int xorshift32(void)
