@@ -96,10 +96,11 @@ kalloc(void)
     else{
       r = kmem.freelist;
       for(int i = 0; i < index -1; ++i){
-        //cprintf("the list %d\n", (char*)r);
         r = r->next;
       }
+
       ret = r->next;
+
       if(ret){
         r->next = r->next->next;
         frame[counter] = (int)(char*)ret;
@@ -107,11 +108,7 @@ kalloc(void)
       }
      
     }
-
-    
-    //kmem.freelist = r->next;
   }
-  //cprintf("returned by us %d\n",ret);
   release(&kmem.lock);
   return (char*)ret;
 }
@@ -121,14 +118,13 @@ int dump_allocated(int *frames, int numframes) {
   if(numframes == 0 || numframes > counter){
     return -1;
   }
+  
   int j = 0;
+  
   for(int i = counter - 1; i >= (counter - numframes); i--){
     frames[j] = frame[i];
     j++;
   }
- // for(int i = 0; i < counter; ++i){
- //     cprintf("the frames %d %d \n", i, frame[i]);
- //   }
-    
+
   return 0;
 }
