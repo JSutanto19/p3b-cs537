@@ -32,7 +32,7 @@ kinit(void)
 
   initlock(&kmem.lock, "kmem");
   p = (char*)PGROUNDUP((uint)end);
-  for(; p + PGSIZE <= (char*)PHYSTOP; p += PGSIZE*2)
+  for(; p + PGSIZE <= (char*)PHYSTOP; p += PGSIZE)
     kfree(p);
 }
 
@@ -126,9 +126,9 @@ int dump_allocated(int *frames, int numframes) {
     frames[j] = frame[i];
     j++;
   }
-  for(int i = 0; i < counter; ++i){
-      cprintf("the frames %d %d \n", i, frame[i]);
-    }
+ // for(int i = 0; i < counter; ++i){
+ //     cprintf("the frames %d %d \n", i, frame[i]);
+ //   }
     
   return 0;
 }

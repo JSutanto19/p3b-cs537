@@ -12,20 +12,21 @@ unsigned int globalSeed = 1;
   x ^= x << 5;
   globalSeed = x;
   //ASK THE TA
-  if (globalSeed == XV6_RAND_MAX){
-    return (unsigned int) XV6_RAND_MAX;
-  }
+ // if (globalSeed == XV6_RAND_MAX){
+ //   return (unsigned int) XV6_RAND_MAX;
+ // }
   return (unsigned int) (globalSeed % XV6_RAND_MAX);
      
  }
 
 int xv6_rand(){
  int randNum = xorshift32();
-  if(randNum > 0 && randNum <= XV6_RAND_MAX){
-    return (unsigned int) randNum;
-  }
+ return randNum + 1;
+ // if(randNum > 0 && randNum <= XV6_RAND_MAX){
+ //   return (unsigned int) randNum;
+ // }
   
-  return (unsigned int)-1;
+  return (unsigned int) randNum;
 }
 
 void xv6_srand(unsigned int seed){
