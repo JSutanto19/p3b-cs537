@@ -235,15 +235,15 @@ ld  -m    elf_i386 -nostdlib --omagic \
 dd if=/dev/zero of=xv6.img count=10000
 10000+0 records in
 10000+0 records out
-5120000 bytes (5.1 MB, 4.9 MiB) copied, 0.0187904 s, 272 MB/s
+5120000 bytes (5.1 MB, 4.9 MiB) copied, 0.0214684 s, 238 MB/s
 dd if=kernel/bootblock of=xv6.img conv=notrunc
 1+0 records in
 1+0 records out
-512 bytes copied, 6.644e-05 s, 7.7 MB/s
+512 bytes copied, 7.0317e-05 s, 7.3 MB/s
 dd if=kernel/kernel of=xv6.img seek=1 conv=notrunc
 257+1 records in
 257+1 records out
-131712 bytes (132 kB, 129 KiB) copied, 0.00047507 s, 277 MB/s
+131712 bytes (132 kB, 129 KiB) copied, 0.000502918 s, 262 MB/s
 gcc -c  -iquote include -Wall -Werror -ggdb  -o tools/mkfs.o tools/mkfs.c
 gcc  tools/mkfs.o -o tools/mkfs
 mkdir -p fs
@@ -307,23 +307,23 @@ cp user/bin/dumptest fs/dumptest
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
 mkdir
-grep
-zombie
-usertests
-sh
-dumptest
-echo
-rm
-stressfs
-ls
-wc
-README
 kill
 ln
+forktest
+stressfs
 cat
 init
 tester
-forktest
+echo
+README
+ls
+rm
+grep
+usertests
+zombie
+sh
+dumptest
+wc
 balloc: first 427 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/ls user/bin/stressfs user/bin/grep user/bin/sh user/bin/tester user/bin/kill user/bin/cat user/bin/mkdir user/bin/init user/bin/rm user/bin/echo user/bin/ln user/bin/dumptest user/bin/usertests user/bin/wc user/bin/zombie
@@ -341,21 +341,21 @@ compile and test the uniformity and randomness of the random number generator
 
 **********************************************************************
 gcc -Wl,-wrap,rand /u/c/s/cs537-1/tests/p3b/ctests/rand_tester.c kernel/rand.c -I./include -I./user -I.kernel/ -o rand_tester -Wall -Werror
-/tmp/tmpiKp21e/p/./rand_tester 4449 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 4844 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 4504 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 1266 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 4051 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 1746 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 4135 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 1138 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 4515 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 783 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 5121 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 4859 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 3442 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 4854 2147483647
-/tmp/tmpiKp21e/p/./rand_tester 1294 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 3549 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 3312 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 5130 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 3118 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 5771 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 2849 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 4110 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 4180 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 3010 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 3458 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 2109 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 137 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 5164 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 4579 2147483647
+/tmp/tmpWPU0xg/p/./rand_tester 5450 2147483647
 
 
 test statistical test PASSED (5 of 5)
@@ -400,38 +400,38 @@ ld  -m    elf_i386 -nostdlib --omagic \
 dd if=/dev/zero of=xv6.img count=10000
 10000+0 records in
 10000+0 records out
-5120000 bytes (5.1 MB, 4.9 MiB) copied, 0.020799 s, 246 MB/s
+5120000 bytes (5.1 MB, 4.9 MiB) copied, 0.0199603 s, 257 MB/s
 dd if=kernel/bootblock of=xv6.img conv=notrunc
 1+0 records in
 1+0 records out
-512 bytes copied, 5.9597e-05 s, 8.6 MB/s
+512 bytes copied, 5.6897e-05 s, 9.0 MB/s
 dd if=kernel/kernel of=xv6.img seek=1 conv=notrunc
 257+1 records in
 257+1 records out
-132076 bytes (132 kB, 129 KiB) copied, 0.000497191 s, 266 MB/s
+132076 bytes (132 kB, 129 KiB) copied, 0.000494863 s, 267 MB/s
 gcc  -I include -nostdinc -Wall -Werror -ggdb -fno-pic -fno-builtin -fno-strict-aliasing -fno-stack-protector -m32 -c -o user/tester.o user/tester.c
 ld  -m    elf_i386 -nostdlib --omagic --entry=main --section-start=.text=0x0 --output=user/bin/tester user/tester.o user/ulib.o user/usys.o user/printf.o user/umalloc.o
 cp user/bin/tester fs/tester
 ./tools/mkfs fs.img fs
 used 29 (bit 1 ninode 26) free 29 total 1024
 mkdir
-grep
-zombie
-usertests
-sh
-dumptest
-echo
-rm
-stressfs
-ls
-wc
-README
 kill
 ln
+forktest
+stressfs
 cat
 init
 tester
-forktest
+echo
+README
+ls
+rm
+grep
+usertests
+zombie
+sh
+dumptest
+wc
 balloc: first 428 blocks have been allocated
 balloc: write bitmap block at sector 28
 rm user/bin/tester
@@ -451,7 +451,6 @@ $ tester
 tester
 Return non-zero value
 TEST PASSED
-
 
 test allocator_b PASSED (5 of 5)
  (test the random allocator in part 3)
